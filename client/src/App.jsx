@@ -8,7 +8,7 @@ const App = () => {
     <div className="bg-gray-200 h-screen"> <div className="flex items-stretch sm:w-[100%] md:w-[60%]" style={{  height: "99%" , margin:"auto" ,   }}>
     <WebcamRecorder />
 
-    <SpeedTest/>
+    
   </div></div>
    
   );
