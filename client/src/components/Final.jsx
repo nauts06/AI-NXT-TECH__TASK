@@ -147,7 +147,7 @@ const WebcamRecorder = () => {
           <button className="btn btn-primary ml-2 " onClick={startRecording}>
             {!isRecording
               ? " Start Recording"
-              : `time remaining: ${countdown}s`}
+              : `time left : ${countdown}'s`}
           </button>
 
           {!isRecording ? (
