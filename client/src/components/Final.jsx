@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
+import SpeedTest from "./Speed";
 
 const WebcamRecorder = () => {
   const videoRef = useRef(null);
@@ -113,13 +114,13 @@ const WebcamRecorder = () => {
   }, [isRecording]);
 
   return (
-    <div className="drop-shadow-md rounded-lg bg-base-200  self-center w-[40%] h-[90%] m-auto">
+    <div className="drop-shadow-md rounded-lg bg-base-200 w-[100%]  self-center sm:w-[100%] md:w-[40%] h-[90%] m-auto ">
       {/* <video autoplay></video> */}
       {isRecording === true ? (
-        <video className="py-4" ref={videoRef} autoPlay muted />
+        <video className="py-2" ref={videoRef} autoPlay muted />
       ) : (
         recordedChunks.length > 0 && (
-          <video className="py-4" ref={recordedVideoRef} controls>
+          <video className="py-2" ref={recordedVideoRef} controls>
             <source
               src={URL.createObjectURL(
                 new Blob(recordedChunks, { type: "video/webm" })
@@ -136,14 +137,14 @@ const WebcamRecorder = () => {
 
       {startKYC === false ? (
         <button
-          className="btn btn-success  self-center mt-[20%] ml-[25%] "
+          className="btn btn-success  self-center mt-[20%] ml-[35%] "
           onClick={() => setStartKYC(true)}
         >
           Start KYC
         </button>
       ) : (
         <>
-          <button className="btn btn-primary" onClick={startRecording}>
+          <button className="btn btn-primary ml-2" onClick={startRecording}>
             {!isRecording
               ? " Start Recording"
               : `time remaining: ${countdown}s`}
@@ -166,7 +167,9 @@ const WebcamRecorder = () => {
       )}
       {recordedChunks.length > 0 && (
         <div>
-          <button className="btn btn-link "  onClick={handleCapture}>Capture</button>
+          <button className="btn btn-link " onClick={handleCapture}>
+            Capture
+          </button>
           {/* <button onClick={handleStopPlayback}>Stop Playback</button> */}
         </div>
       )}
@@ -175,21 +178,29 @@ const WebcamRecorder = () => {
           <img src={capturedImage} alt="Captured Frame" />
         </div>
       )}
-      {/* ----------------rect speed meter---------------------- */}
 
       {/* ------------------------Geo Location--------------------------------- */}
       {startKYC === true ? (
-      <div className="mt-6 ml-[25%] ">
-        <button className="btn btn-accent " onClick={handleGeolocation}>Get Geo Location</button>
-        {latitude && longitude && (
-          <div>
-            <p>Latitude: {latitude}</p>
-            <p>Longitude: {longitude}</p>
-          </div>
-        )}
-      </div>) : (null)}
-      
-      
+        <div className="mt-2 ml-[25%] ">
+          <button className="btn btn-accent " onClick={handleGeolocation}>
+            Get Geo Location
+          </button>
+          {latitude && longitude && (
+            <div>
+              <p>Latitude: {latitude}</p>
+              <p>Longitude: {longitude}</p>
+            </div>
+          )}
+        </div>
+      ) : null}
+
+      {/* ----------------rect speed meter---------------------- */}
+
+      {startKYC === true ? (
+        <div className="btn btn-neutral  mt-6  w-[100%]">
+          <SpeedTest />
+        </div>
+      ) : null}
     </div>
   );
 };

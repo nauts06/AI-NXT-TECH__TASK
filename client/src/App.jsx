@@ -5,10 +5,10 @@ import Sore from "./components/Sore";
 
 const App = () => {
   return (
-    <div className="bg-gray-400 h-screen "> <div className="flex items-stretch " style={{ width: "60%", height: "99%" , margin:"auto" ,   }}>
+    <div className="bg-gray-200 h-screen"> <div className="flex items-stretch sm:w-[100%] md:w-[60%]" style={{  height: "99%" , margin:"auto" ,   }}>
     <WebcamRecorder />
 
-    {/* <SpeedTest/> */}
+    <SpeedTest/>
   </div></div>
    
   );
